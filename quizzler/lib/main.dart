@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/question.dart';
 
 void main() {
   runApp(const Quizzler());
@@ -35,13 +36,16 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
+  List<Question> questionBank = [
+    Question(
+        questionAnswer: false,
+        questionText: 'You can lead a cow down stairs but not up stairs.'),
+    Question(
+        questionAnswer: true,
+        questionText:
+            'Approximately one quarter of human bones are in the feet.'),
+    Question(questionAnswer: true, questionText: 'A slug\'s blood is green.'),
   ];
-
-  List<bool> answers = [false, true, true];
 
   int questionNumber = 0;
 
@@ -57,7 +61,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -83,7 +87,8 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  bool correctAnswer = answers[questionNumber];
+                  bool correctAnswer =
+                      questionBank[questionNumber].questionAnswer;
                   if (correctAnswer == true) {
                     scoreKeeper.add(
                       const Icon(
@@ -99,7 +104,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     );
                   }
-                  if (questionNumber < answers.length - 1) {
+                  if (questionNumber < questionBank.length - 1) {
                     questionNumber++;
                   }
                 });
@@ -123,7 +128,8 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  bool correctAnswer = answers[questionNumber];
+                  bool correctAnswer =
+                      questionBank[questionNumber].questionAnswer;
                   if (correctAnswer == false) {
                     scoreKeeper.add(
                       const Icon(
@@ -139,7 +145,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     );
                   }
-                  if (questionNumber < answers.length - 1) {
+                  if (questionNumber < questionBank.length - 1) {
                     questionNumber++;
                   }
                 });
