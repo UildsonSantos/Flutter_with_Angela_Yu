@@ -55,31 +55,43 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         Expanded(
-          child: FlatButton(
-            color: Colors.green,
-            child: const Text(
-              'True',
-              style: TextStyle(
-                fontSize: 25.0,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
               ),
+              child: const Text(
+                'True',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+              onPressed: () {
+                //The user picked true.
+              },
             ),
-            onPressed: () {
-              //The user picked true.
-            },
           ),
         ),
         Expanded(
-          child: FlatButton(
-            color: Colors.red,
-            child: const Text(
-              'False',
-              style: TextStyle(
-                fontSize: 25.0,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
               ),
+              child: const Text(
+                'False',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+              onPressed: () {
+                //The user picked true.
+              },
             ),
-            onPressed: () {
-              //The user picked false.
-            },
           ),
         ),
       ],
