@@ -22,85 +22,40 @@ class _XylophoneAppState extends State<XylophoneApp> {
     audioCache.playBytes(bytes);
   }
 
+  Expanded buildKey({required Color color, required int soundNumber}) {
+    return Expanded(
+      child: TextButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.zero),
+        ),
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        child: Container(
+          color: color,
+        ),
+      ),
+    );
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.red,
         body: SafeArea(
+          maintainBottomViewPadding: false,
           child: Column(
             children: [
-              TextButton(
-                onPressed: () {
-                  playSound(1);
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  color: Colors.red,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  playSound(2);
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  color: Colors.orange,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  playSound(3);
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  color: Colors.yellow,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  playSound(4);
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  color: Colors.green,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  playSound(5);
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  color: Colors.teal,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  playSound(6);
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  color: Colors.blue,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  playSound(7);
-                },
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  color: Colors.purple,
-                ),
-              ),
+              buildKey(color: Colors.red, soundNumber: 1),
+              buildKey(color: Colors.orange, soundNumber: 2),
+              buildKey(color: Colors.yellow, soundNumber: 3),
+              buildKey(color: Colors.green, soundNumber: 4),
+              buildKey(color: Colors.teal, soundNumber: 5),
+              buildKey(color: Colors.blue, soundNumber: 6),
+              buildKey(color: Colors.purple, soundNumber: 7),
             ],
           ),
         ),
