@@ -1,7 +1,9 @@
 import 'package:quizzler/question.dart';
 
 class QuizBrain {
-  List<Question> questionBank = [
+  int _questionNumber = 0;
+
+  final List<Question> _questionBank = [
     Question(
       questionAnswer: true,
       questionText: 'Some cats are actually allergic to humans',
@@ -61,4 +63,18 @@ class QuizBrain {
           'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
     ),
   ];
+
+  void nextQuestion() {
+    if (_questionNumber < _questionBank.length - 1) {
+      _questionNumber++;
+    }
+  }
+
+  String getQuestionText() {
+    return _questionBank[_questionNumber].questionText;
+  }
+
+  bool getCorrectAnswer() {
+    return _questionBank[_questionNumber].questionAnswer;
+  }
 }
