@@ -39,25 +39,28 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  void checkAnswer(bool userPickedAnswer) {
+  void showAlert(BuildContext context) {
+    Alert(
+        context: context,
+        type: AlertType.success,
+        title: 'Finished',
+        desc: 'You\'ve reached the and of the quiz.',
+        buttons: [
+          DialogButton(
+            child: const Text(
+              'Ok',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.pop(context),
+          )
+        ]).show();
+  }
+
+  void checkAnswer(bool userPickedAnswer, BuildContext context) {
     bool correctAnswer = quizBrain.getCorrectAnswer();
     setState(() {
       if (quizBrain.isFinished() == true) {
-        Alert(
-            context: context,
-            type: AlertType.success,
-            title: 'Finished',
-            desc: 'You\'ve reached the and of the quiz.',
-            buttons: [
-              DialogButton(
-                child: const Text(
-                  'Ok',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                onPressed: () => Navigator.pop(context),
-              )
-            ]).show();
-
+        showAlert(context);
         quizBrain.reset();
         scoreKeeper.clear();
       } else {
@@ -118,7 +121,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                checkAnswer(true);
+                checkAnswer(true, context);
               },
             ),
           ),
@@ -138,7 +141,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                checkAnswer(false);
+                checkAnswer(false, context);
               },
             ),
           ),
@@ -150,9 +153,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
