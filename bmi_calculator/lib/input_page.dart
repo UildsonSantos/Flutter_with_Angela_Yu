@@ -77,7 +77,7 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   const Text(
+                  const Text(
                     'HEIGHT',
                     style: kLabelTextStyle,
                   ),
@@ -85,7 +85,7 @@ class _InputPageState extends State<InputPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
-                    children:  [
+                    children: [
                       Text(
                         height.toStringAsFixed(1),
                         style: kNumberTextStyle,
@@ -96,17 +96,26 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ],
                   ),
-                  Slider(
-                    value: height,
-                    min: 100.0,
-                    max: 220.0,
-                    activeColor: const Color(0xFFEB1555),
-                    inactiveColor: const Color(0xFF8D8E98),
-                    onChanged: (value) {
-                      setState(() {
-                        height = value;
-                      });
-                    },
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: const Color(0xFF8D8E98),
+                        activeTrackColor: Colors.white,
+                        thumbColor: const Color(0xFFEB1555),
+                        overlayColor: const Color(0x29EB1555),
+                        thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 15.0),
+                        overlayShape:
+                            const RoundSliderOverlayShape(overlayRadius: 30.0)),
+                    child: Slider(
+                      value: height,
+                      min: 100.0,
+                      max: 220.0,
+                      onChanged: (value) {
+                        setState(() {
+                          height = value;
+                        });
+                      },
+                    ),
                   )
                 ],
               ),
