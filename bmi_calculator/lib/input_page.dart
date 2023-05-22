@@ -11,7 +11,7 @@ const bottomContainerColour = Color(0xFFEB1555);
 enum Gender {
   male,
   female,
-  forLate
+  forLate,
 }
 
 class InputPage extends StatefulWidget {
@@ -37,61 +37,60 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
                       });
                     },
-                    child: ReusableCard(
-                      colour: selectedGender == Gender.male
-                          ? activeCardColour
-                          : inactiveCardColour,
-                      cardChild: const IconContent(
-                        icon: Icons.male,
-                        label: 'MALE',
-                      ),
+                    colour: selectedGender == Gender.male
+                        ? activeCardColour
+                        : inactiveCardColour,
+                    cardChild: const IconContent(
+                      icon: Icons.male,
+                      label: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: ReusableCard(
-                      colour: selectedGender == Gender.female
-                          ? activeCardColour
-                          : inactiveCardColour,
-                      cardChild: const IconContent(
-                        icon: Icons.female,
-                        label: 'FEMALE',
-                      ),
+                    colour: selectedGender == Gender.female
+                        ? activeCardColour
+                        : inactiveCardColour,
+                    cardChild: const IconContent(
+                      icon: Icons.female,
+                      label: 'FEMALE',
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
             child: ReusableCard(
+              onPress: () {},
               colour: activeCardColour,
               cardChild: Placeholder(),
             ),
           ),
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
                   child: ReusableCard(
+                    onPress: () {},
                     colour: activeCardColour,
                     cardChild: Placeholder(),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
+                    onPress: () {},
                     colour: activeCardColour,
                     cardChild: Placeholder(),
                   ),
