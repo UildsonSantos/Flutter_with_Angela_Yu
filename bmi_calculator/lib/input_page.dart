@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:bmi_calculator/constants.dart';
@@ -19,6 +21,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   late Gender selectedGender = Gender.forLate;
+  double height = 187;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +74,42 @@ class _InputPageState extends State<InputPage> {
             child: ReusableCard(
               onPress: () {},
               colour: kActiveCardColour,
-              cardChild: Placeholder(),
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   const Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children:  [
+                      Text(
+                        height.toStringAsFixed(1),
+                        style: kNumberTextStyle,
+                      ),
+                      const Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height,
+                    min: 100.0,
+                    max: 220.0,
+                    activeColor: const Color(0xFFEB1555),
+                    inactiveColor: const Color(0xFF8D8E98),
+                    onChanged: (value) {
+                      setState(() {
+                        height = value;
+                      });
+                    },
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
